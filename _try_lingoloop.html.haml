@@ -1,0 +1,13 @@
+%section#try-lingoloop.container-fluid
+  .container
+    .row
+      .col-md-6
+        %h3.highlight-header= t('shared.try_lingoloop.header')
+        .wrappy
+          %ul.star-bullets
+            - t('shared.try_lingoloop.reasons').each do |reason|
+              %li= reason
+        .button-wrapper
+          %span.btn.try-button.start-registration.cta= t('shared.try_lingoloop.cta')
+      .col-md-6
+        = video_tag 'class.mp4', autoplay: true, loop: true

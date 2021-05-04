@@ -1,0 +1,15 @@
+.row
+  .col-md-12
+    = form_for(learner, as: :learner, url: registration_path(:learner), html: { class: 'lingo-registration' }) do |f|
+      = f.text_field :name, autofocus: true, class: 'form-control', placeholder: t('learners.registrations.name_prompt')
+      = f.email_field :email, class: 'form-control spaced-out-form', placeholder: t('learners.registrations.email_prompt')
+      - if require_phone_number?
+        = telephone_field nil, :input_phone_number, class: 'form-control spaced-out-form'
+        = hidden_field :learner, :phone_number
+      = f.password_field :password, autocomplete: 'off', class: 'form-control spaced-out-form', placeholder: t('learners.registrations.password_prompt')
+      #terms= t('learners.registrations.terms_html')
+      .actions.row
+        .col-md-5
+          = link_to(t('learners.registrations.login'), 'javascript:void(0)', { id: 'show-login', class: 'swap-views' })
+        .col-md-7
+          = f.submit t('learners.registrations.create_account'), class: 'btn pull-right primary-button'

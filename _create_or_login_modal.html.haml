@@ -1,0 +1,19 @@
+#create-or-log-in
+  .container-fluid
+    = render 'shared/modal_controls'
+    .row
+      .col-md-offset-2.col-md-8
+        #signup-area
+          - if @learner.errors.present?
+            .alert.alert-danger.modal-errors{role: "alert"}
+              = @learner.errors.full_messages.join(", ")
+
+          %h1.modal-title= t('learners.registrations.header')
+          = render partial: 'shared/registration_form', locals: { learner: @learner }
+
+        #login-area.hide-view
+          .login-error.alert.alert-danger.modal-errors{ hidden: "true", role: "alert"}= t('login.error')
+
+          %h1.modal-title= t('login.header')
+          = yield :form
+

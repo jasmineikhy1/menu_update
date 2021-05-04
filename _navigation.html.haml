@@ -1,0 +1,17 @@
+#nav
+  = link_to(t('navigation.reviews'), blog_reviews_url)
+
+  - if @show_prorata_link
+    = link_to(t('navigation.prorata'), 'javascript:void(0)', class: 'prorata-purchase')
+  - else
+    = link_to(t('navigation.prices'), 'javascript:void(0)', class: 'subscribe-learner')
+  = link_to(t('navigation.support'), support_url)
+  = link_to(t('navigation.blog'), blog_url)  
+  
+  - if show_schedule_link?
+    %span#nav-schedule.start-registration= t('navigation.view_schedule')
+
+  - if learner_signed_in?
+    = link_to(t('navigation.logout'), destroy_learner_session_path, method: 'delete', id: 'logout')
+  - else
+    = render partial: 'shared/create_or_login_links'
